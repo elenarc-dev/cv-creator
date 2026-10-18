@@ -22,4 +22,26 @@ describe("JSON import/export", () => {
   it("rechaza estructura que no cumple el esquema", () => {
     expect(() => parseProfile('{"foo": 1}')).toThrow(/no válida/);
   });
+
+  it("migra el campo `document` de certificaciones a `image`", () => {
+    // `document` es el nombre antiguo del campo: ya no existe en el tipo actual.
+    const legacy = {
+      ...createProfile(),
+      certifications: [
+        {
+          id: "c1",
+          name: "AWS SAA",
+          organization: "Amazon",
+          issueDate: "2024-01",
+          credentialId: "ABC-123",
+          document: "data:image/png;base64,AAAA",
+        },
+      ],
+    };
+
+    const parsed = parseProfile(JSON.stringify(legacy));
+
+    expect(parsed.certifications[0].image).toBe("data:image/png;base64,AAAA");
+    expect(parsed.certifications[0]).not.toHaveProperty("document");
+  });
 });

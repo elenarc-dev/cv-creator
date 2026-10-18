@@ -372,3 +372,20 @@
     box-shadow: none;
   }
 }
+
+.elena-main .cv-entry--cert,
+.elena-sidebar .cv-entry--cert { display: flex; align-items: flex-start; gap: 5px; }
+
+.elena-main .cv-entry--cert .cv-entry-body,
+.elena-sidebar .cv-entry--cert .cv-entry-body { min-width: 0; flex: 1 1 auto; }
+
+.elena-main .cv-cert-badge,
+.elena-sidebar .cv-cert-badge {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  border: 1px solid #d7dee2;
+  border-radius: 3px;
+  padding: 1px;
+}

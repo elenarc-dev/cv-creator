@@ -99,13 +99,18 @@
     {#each paragraphs(item.value.description) as paragraph}<p>{paragraph}</p>{/each}
   </article>
 {:else if item.kind === "certification"}
-  <article class="cv-entry">
-    <div class="cv-entry-head">
-      <span class="cv-role">{item.value.name}</span>
-      <span class="cv-company">{item.value.organization}</span>
-      <span class="cv-meta">{meta([datePair(item.value.issueDate, item.value.expiryDate), item.value.credentialId])}</span>
+  <article class="cv-entry cv-entry--cert">
+    {#if item.value.image}
+      <img class="cv-cert-badge" src={item.value.image} alt="" />
+    {/if}
+    <div class="cv-entry-body">
+      <div class="cv-entry-head">
+        <span class="cv-role">{item.value.name}</span>
+        <span class="cv-company">{item.value.organization}</span>
+        <span class="cv-meta">{meta([datePair(item.value.issueDate, item.value.expiryDate), item.value.credentialId])}</span>
+      </div>
+      {#if item.value.url}<a href={item.value.url}>URL</a>{/if}
     </div>
-    {#if item.value.url}<a href={item.value.url}>URL</a>{/if}
   </article>
 {:else if item.kind === "achievement"}
   <article class="cv-entry">

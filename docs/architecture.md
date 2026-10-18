@@ -23,6 +23,9 @@ que lo que se ve es lo que se exporta.
 Un archivo `workspace.json` en el directorio de datos de la app, con escritura atómica
 (temp + rename) y backups versionados con rotación. JSON es además el formato de
 intercambio/backup principal.
+Los renombrados de campo compatibles se normalizan en la importación, no en el modelo:
+`migrateLegacyFields()` en `src/lib/import/json.ts` (caso `document` → `image` en
+certificaciones) reescribe los campos antiguos al leer sin subir `SCHEMA_VERSION`.
 
 ### ADR-5: PDF por impresión del webview
 El PDF se genera imprimiendo el mismo HTML (print CSS `@page A4`). Encapsulado en

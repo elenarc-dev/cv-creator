@@ -143,7 +143,7 @@ export function createCertification(): Certification {
     expiryDate: undefined,
     credentialId: undefined,
     url: undefined,
-    document: undefined,
+    image: undefined,
   };
 }
 

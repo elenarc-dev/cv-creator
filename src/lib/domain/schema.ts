@@ -170,7 +170,7 @@ export const Certification = z.object({
   expiryDate: DateString.optional(),
   credentialId: z.string().optional(),
   url: z.string().optional(),
-  document: z.string().optional(),
+  image: z.string().optional(),
 });
 export type Certification = z.infer<typeof Certification>;
 

@@ -36,6 +36,9 @@
 }
 .cv-entry { margin-bottom: 10px; break-inside: avoid; }
 .cv-entry-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.cv-entry--cert { display: flex; align-items: flex-start; gap: 8px; }
+.cv-entry--cert .cv-entry-body { min-width: 0; flex: 1 1 auto; }
+.cv-cert-badge { width: 44px; height: 44px; flex: 0 0 auto; object-fit: contain; border: 1px solid #e5e7eb; border-radius: 4px; padding: 2px; }
 .cv-role { font-weight: 700; color: #111827; }
 .cv-company { color: #374151; font-weight: 600; }
 .cv-meta { margin-left: auto; color: #6b7280; font-size: 0.92em; }

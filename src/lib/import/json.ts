@@ -10,6 +10,26 @@ function formatIssues(error: ZodError): string {
     .join("; ");
 }
 
+/**
+ * Normaliza datos guardados por versiones anteriores, donde el campo de imagen
+ * de una certificación se llamaba `document`. Se migra a `image` sin tocar
+ * `SCHEMA_VERSION` porque el campo es opcional.
+ */
+function migrateLegacyFields(data: unknown): unknown {
+  if (typeof data !== "object" || data === null) return data;
+  const draft = data as { certifications?: unknown };
+  if (!Array.isArray(draft.certifications)) return data;
+  for (const item of draft.certifications) {
+    if (typeof item !== "object" || item === null) continue;
+    const cert = item as { document?: unknown; image?: unknown };
+    if (cert.image === undefined && cert.document !== undefined) {
+      cert.image = cert.document;
+    }
+    delete cert.document;
+  }
+  return data;
+}
+
 /** Convierte una cadena JSON en un `Profile` validado. Lanza si no es válido. */
 export function parseProfile(json: string): ProfileType {
   let data: unknown;
@@ -18,7 +38,7 @@ export function parseProfile(json: string): ProfileType {
   } catch {
     throw new Error("El archivo no contiene JSON válido.");
   }
-  const result = Profile.safeParse(data);
+  const result = Profile.safeParse(migrateLegacyFields(data));
   if (!result.success) {
     throw new Error(`Estructura de perfil no válida: ${formatIssues(result.error)}`);
   }

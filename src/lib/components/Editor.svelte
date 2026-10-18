@@ -1,4 +1,5 @@
 <script lang="ts">
+  import CertificationsEditor from "$lib/components/editors/CertificationsEditor.svelte";
   import EducationEditor from "$lib/components/editors/EducationEditor.svelte";
   import ExperienceEditor from "$lib/components/editors/ExperienceEditor.svelte";
   import JobOffersEditor from "$lib/components/editors/JobOffersEditor.svelte";
@@ -16,6 +17,7 @@
     { id: "education", labelKey: "editor.tabs.education", component: EducationEditor },
     { id: "skills", labelKey: "editor.tabs.skills", component: SkillsEditor },
     { id: "languages", labelKey: "editor.tabs.languages", component: LanguagesEditor },
+    { id: "certifications", labelKey: "editor.tabs.certifications", component: CertificationsEditor },
     { id: "version", labelKey: "editor.tabs.version", component: VersionEditor },
     { id: "offers", labelKey: "editor.tabs.offers", component: JobOffersEditor },
   ];

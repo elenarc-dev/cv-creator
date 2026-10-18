@@ -174,6 +174,7 @@ export interface ResolvedCertification {
   expiryDate?: string;
   credentialId?: string;
   url?: string;
+  image?: string;
 }
 
 export interface ResolvedAchievement {
@@ -377,6 +378,7 @@ function resolveCertification(c: Certification): ResolvedCertification {
     expiryDate: c.expiryDate,
     credentialId: c.credentialId,
     url: c.url,
+    image: c.image,
   };
 }
 
